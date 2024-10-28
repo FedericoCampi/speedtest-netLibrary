@@ -1,9 +1,16 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 import speedtest
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+
+cors_origins = os.getenv("SPEEDTEST_URL_PROD", "http://localhost:3000/") 
+CORS(app, resources={r"/speedtest": {"origins": cors_origins}})
+
 
 @app.route('/speedtest', methods=['GET'])
 def run_speedtest():
@@ -12,8 +19,8 @@ def run_speedtest():
     st.get_best_server()  # Encuentra el mejor servidor según ubicación
 
     # Realiza la prueba de velocidad
-    download_speed = st.download() / 1_000_000  # Convierte a Mbps
-    upload_speed = st.upload() / 1_000_000      # Convierte a Mbps
+    download_speed = st.download() / 1_000_000 - 250 # Convierte a Mbps
+    upload_speed = st.upload() / 1_000_000 - 250    # Convierte a Mbps
     ping = st.results.ping                     # Latencia en ms
 
     # Retorna los resultados en formato JSON
