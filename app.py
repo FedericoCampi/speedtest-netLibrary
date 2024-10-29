@@ -8,7 +8,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-CORS(app, resources={r"/*": {"origins": ["https://www.speeds-test.com/"]}})
+CORS(app, resources={r"/*": {"origins": ["https://www.speeds-test.com"]}})
 
 @app.route('/speedtest', methods=['GET'])
 def run_speedtest():
