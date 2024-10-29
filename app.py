@@ -9,7 +9,7 @@ load_dotenv()
 app = Flask(__name__)
 
 cors_origins = os.getenv("https://www.speeds-test.com/", "http://localhost:3000/") 
-CORS(app, resources={r"/speedtest": {"origins": cors_origins}})
+CORS(app, resources={{"origins": cors_origins}})
 
 
 @app.route('/speedtest', methods=['GET'])
