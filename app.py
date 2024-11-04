@@ -17,8 +17,8 @@ def run_speedtest():
     st.get_best_server()  # Encuentra el mejor servidor según ubicación
 
     # Realiza la prueba de velocidad
-    download_speed = st.download() / 1_000_000 - 250 # Convierte a Mbps
-    upload_speed = st.upload() / 1_000_000 - 250    # Convierte a Mbps
+    download_speed = st.download() / 1_000_000 # Convierte a Mbps
+    upload_speed = st.upload() / 1_000_000    # Convierte a Mbps
     ping = st.results.ping                     # Latencia en ms
 
     # Retorna los resultados en formato JSON
