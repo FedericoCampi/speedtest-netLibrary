@@ -8,13 +8,17 @@ load_dotenv()
 
 app = Flask(__name__)
 
-CORS(app, resources={r"/*": {"origins": ["https://www.speeds-test.com"]}})
+CORS(app, resources={r"/speedtest": {"origins": ["https://www.speeds-test.com"]}})
 
 @app.route('/speedtest', methods=['GET'])
 def run_speedtest():
     # Inicializa el cliente de Speedtest
     st = speedtest.Speedtest()
-    st.get_best_server()  # Encuentra el mejor servidor según ubicación
+
+    # Especifica el ID del servidor de prueba que deseas usar
+    server_id = ["40458"]  # Reemplaza 12345 con el ID del servidor deseado
+    st.get_servers(server_id)
+    st.get_best_server()  # Selecciona el servidor especificado
 
     # Realiza la prueba de velocidad
     download_speed = st.download() / 1_000_000 # Convierte a Mbps
