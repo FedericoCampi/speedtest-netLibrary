@@ -10,6 +10,10 @@ app = Flask(__name__)
 
 CORS(app, resources={r"/speedtest": {"origins": ["https://www.speeds-test.com"]}})
 
+@app.route('/', methods=['GET'])
+def home():
+    return "Bienvenido a la aplicación Speedtest"
+
 @app.route('/speedtest', methods=['GET'])
 def run_speedtest():
     # Inicializa el cliente de Speedtest
@@ -34,3 +38,7 @@ def run_speedtest():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
