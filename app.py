@@ -20,8 +20,8 @@ def run_speedtest():
     st = speedtest.Speedtest()
 
     # Especifica el ID del servidor de prueba que deseas usar
-    server_id = ["40458"]  # Reemplaza 12345 con el ID del servidor deseado
-    st.get_servers(server_id)
+    # server_id = ["40458"]  # Reemplaza 12345 con el ID del servidor deseado
+    # st.get_servers(server_id)
     st.get_best_server()  # Selecciona el servidor especificado
 
     # Realiza la prueba de velocidad
